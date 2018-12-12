@@ -1,0 +1,702 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6537137C20C91CBD001D1AEE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537137B20C91CBD001D1AEE /* AppDelegate.m */; };
+		6537138220C91CBD001D1AEE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6537138020C91CBD001D1AEE /* Main.storyboard */; };
+		6537138420C91CBE001D1AEE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6537138320C91CBE001D1AEE /* Assets.xcassets */; };
+		6537138A20C91CBE001D1AEE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537138920C91CBE001D1AEE /* main.m */; };
+		6537139920C9215A001D1AEE /* RMCommons.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537139820C9215A001D1AEE /* RMCommons.m */; };
+		6537139C20C923B8001D1AEE /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537139B20C923B8001D1AEE /* BaseViewController.m */; };
+		6537139F20C923D8001D1AEE /* RMHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6537139E20C923D8001D1AEE /* RMHomeViewController.m */; };
+		653713B120C933BF001D1AEE /* RASpeakButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 653713B020C933BF001D1AEE /* RASpeakButton.m */; };
+		653713B420C94075001D1AEE /* RMMusicPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 653713B320C94075001D1AEE /* RMMusicPlayer.m */; };
+		653713BC20C940E8001D1AEE /* Talkie_Tick_Short.wav in Resources */ = {isa = PBXBuildFile; fileRef = 653713B720C940E8001D1AEE /* Talkie_Tick_Short.wav */; };
+		653713BE20C940E8001D1AEE /* Talkie_Tick_2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 653713B920C940E8001D1AEE /* Talkie_Tick_2.wav */; };
+		653713BF20C940E8001D1AEE /* Talkie_Up.wav in Resources */ = {isa = PBXBuildFile; fileRef = 653713BA20C940E8001D1AEE /* Talkie_Up.wav */; };
+		7805DCEF218056B100E7A9CF /* RATalkbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7805DCEE218056B100E7A9CF /* RATalkbackViewController.m */; };
+		7805DCF221806E1C00E7A9CF /* NSDictionary+STSafeObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7805DCF121806E1C00E7A9CF /* NSDictionary+STSafeObject.m */; };
+		7805DCF9218074FD00E7A9CF /* RTTipLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7805DCF8218074FD00E7A9CF /* RTTipLabel.m */; };
+		782FE02021ACDABB00A8FD77 /* UIAlertController+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 782FE01E21ACDABB00A8FD77 /* UIAlertController+Blocks.m */; };
+		782FE02321ACDBD300A8FD77 /* RMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 782FE02121ACDBD300A8FD77 /* RMAlertView.m */; };
+		7835079D2182A12D009AA456 /* RMPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7835079C2182A12D009AA456 /* RMPageViewController.m */; };
+		7842A73E218866CD002D6BCF /* RMInterruptView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7842A73D218866CD002D6BCF /* RMInterruptView.m */; };
+		7869945E2186E8F000F16B89 /* RMReportViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7869945D2186E8F000F16B89 /* RMReportViewController.m */; };
+		786994602186FCD300F16B89 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7869945F2186FCD300F16B89 /* WebKit.framework */; };
+		78DD34A9218153750015AAEF /* RMMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD34A8218153750015AAEF /* RMMessageView.m */; };
+		78DD34AD218157930015AAEF /* RMMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD34AB218157930015AAEF /* RMMessageCell.m */; };
+		78DD34AE218157930015AAEF /* RMMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 78DD34AC218157930015AAEF /* RMMessageCell.xib */; };
+		78DD34B221815E1F0015AAEF /* RMMessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD34B121815E1F0015AAEF /* RMMessageModel.m */; };
+		78DD34B5218192380015AAEF /* RMVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD34B4218192380015AAEF /* RMVideoView.m */; };
+		78DD34B92181A4E90015AAEF /* RMCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD34B82181A4E90015AAEF /* RMCallViewController.m */; };
+		78DD34BF2181C4B10015AAEF /* LHSlideViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD34BB2181C4B10015AAEF /* LHSlideViews.m */; };
+		78DD34C02181C4B10015AAEF /* LHMenuScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD34BC2181C4B10015AAEF /* LHMenuScrollView.m */; };
+		78DD34C32181C54C0015AAEF /* RMMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 78DD34C22181C54C0015AAEF /* RMMenuView.m */; };
+		F374BC1AE2B80F9A1DB5CC2C /* libPods-RTMaxAudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 81A125EBBD87AE9C11360E2B /* libPods-RTMaxAudio.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		653713AA20C926CC001D1AEE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		2539F0B5A32F2326F64B19E7 /* Pods-RTMaxAudio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTMaxAudio.release.xcconfig"; path = "Pods/Target Support Files/Pods-RTMaxAudio/Pods-RTMaxAudio.release.xcconfig"; sourceTree = "<group>"; };
+		6537137720C91CBD001D1AEE /* RTMaxAudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RTMaxAudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6537137A20C91CBD001D1AEE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		6537137B20C91CBD001D1AEE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		6537138120C91CBD001D1AEE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		6537138320C91CBE001D1AEE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6537138820C91CBE001D1AEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6537138920C91CBE001D1AEE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6537139120C91EA2001D1AEE /* RTMaxAudio.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTMaxAudio.pch; sourceTree = "<group>"; };
+		6537139720C9215A001D1AEE /* RMCommons.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMCommons.h; sourceTree = "<group>"; };
+		6537139820C9215A001D1AEE /* RMCommons.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMCommons.m; sourceTree = "<group>"; };
+		6537139A20C923B8001D1AEE /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		6537139B20C923B8001D1AEE /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		6537139D20C923D8001D1AEE /* RMHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMHomeViewController.h; sourceTree = "<group>"; };
+		6537139E20C923D8001D1AEE /* RMHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMHomeViewController.m; sourceTree = "<group>"; };
+		653713AF20C933BF001D1AEE /* RASpeakButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RASpeakButton.h; sourceTree = "<group>"; };
+		653713B020C933BF001D1AEE /* RASpeakButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RASpeakButton.m; sourceTree = "<group>"; };
+		653713B220C94075001D1AEE /* RMMusicPlayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMMusicPlayer.h; sourceTree = "<group>"; };
+		653713B320C94075001D1AEE /* RMMusicPlayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMMusicPlayer.m; sourceTree = "<group>"; };
+		653713B720C940E8001D1AEE /* Talkie_Tick_Short.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Talkie_Tick_Short.wav; sourceTree = "<group>"; };
+		653713B920C940E8001D1AEE /* Talkie_Tick_2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Talkie_Tick_2.wav; sourceTree = "<group>"; };
+		653713BA20C940E8001D1AEE /* Talkie_Up.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Talkie_Up.wav; sourceTree = "<group>"; };
+		7805DCED218056B100E7A9CF /* RATalkbackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RATalkbackViewController.h; sourceTree = "<group>"; };
+		7805DCEE218056B100E7A9CF /* RATalkbackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RATalkbackViewController.m; sourceTree = "<group>"; };
+		7805DCF021806E1C00E7A9CF /* NSDictionary+STSafeObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+STSafeObject.h"; sourceTree = "<group>"; };
+		7805DCF121806E1C00E7A9CF /* NSDictionary+STSafeObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+STSafeObject.m"; sourceTree = "<group>"; };
+		7805DCF7218074FD00E7A9CF /* RTTipLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RTTipLabel.h; sourceTree = "<group>"; };
+		7805DCF8218074FD00E7A9CF /* RTTipLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RTTipLabel.m; sourceTree = "<group>"; };
+		782FE01E21ACDABB00A8FD77 /* UIAlertController+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIAlertController+Blocks.m"; sourceTree = "<group>"; };
+		782FE01F21ACDABB00A8FD77 /* UIAlertController+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIAlertController+Blocks.h"; sourceTree = "<group>"; };
+		782FE02121ACDBD300A8FD77 /* RMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RMAlertView.m; sourceTree = "<group>"; };
+		782FE02221ACDBD300A8FD77 /* RMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RMAlertView.h; sourceTree = "<group>"; };
+		7835079B2182A12D009AA456 /* RMPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMPageViewController.h; sourceTree = "<group>"; };
+		7835079C2182A12D009AA456 /* RMPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMPageViewController.m; sourceTree = "<group>"; };
+		7842A73C218866CD002D6BCF /* RMInterruptView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMInterruptView.h; sourceTree = "<group>"; };
+		7842A73D218866CD002D6BCF /* RMInterruptView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMInterruptView.m; sourceTree = "<group>"; };
+		7869945C2186E8F000F16B89 /* RMReportViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMReportViewController.h; sourceTree = "<group>"; };
+		7869945D2186E8F000F16B89 /* RMReportViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMReportViewController.m; sourceTree = "<group>"; };
+		7869945F2186FCD300F16B89 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		78DD34A7218153750015AAEF /* RMMessageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMMessageView.h; sourceTree = "<group>"; };
+		78DD34A8218153750015AAEF /* RMMessageView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMMessageView.m; sourceTree = "<group>"; };
+		78DD34AA218157930015AAEF /* RMMessageCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMMessageCell.h; sourceTree = "<group>"; };
+		78DD34AB218157930015AAEF /* RMMessageCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMMessageCell.m; sourceTree = "<group>"; };
+		78DD34AC218157930015AAEF /* RMMessageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RMMessageCell.xib; sourceTree = "<group>"; };
+		78DD34B021815E1F0015AAEF /* RMMessageModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMMessageModel.h; sourceTree = "<group>"; };
+		78DD34B121815E1F0015AAEF /* RMMessageModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMMessageModel.m; sourceTree = "<group>"; };
+		78DD34B3218192380015AAEF /* RMVideoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMVideoView.h; sourceTree = "<group>"; };
+		78DD34B4218192380015AAEF /* RMVideoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMVideoView.m; sourceTree = "<group>"; };
+		78DD34B72181A4E90015AAEF /* RMCallViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMCallViewController.h; sourceTree = "<group>"; };
+		78DD34B82181A4E90015AAEF /* RMCallViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMCallViewController.m; sourceTree = "<group>"; };
+		78DD34BB2181C4B10015AAEF /* LHSlideViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHSlideViews.m; sourceTree = "<group>"; };
+		78DD34BC2181C4B10015AAEF /* LHMenuScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHMenuScrollView.m; sourceTree = "<group>"; };
+		78DD34BD2181C4B10015AAEF /* LHSlideViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHSlideViews.h; sourceTree = "<group>"; };
+		78DD34BE2181C4B10015AAEF /* LHMenuScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHMenuScrollView.h; sourceTree = "<group>"; };
+		78DD34C12181C54C0015AAEF /* RMMenuView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RMMenuView.h; sourceTree = "<group>"; };
+		78DD34C22181C54C0015AAEF /* RMMenuView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RMMenuView.m; sourceTree = "<group>"; };
+		81A125EBBD87AE9C11360E2B /* libPods-RTMaxAudio.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RTMaxAudio.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A0B8A522DF293670A13F0A3B /* Pods-RTMaxAudio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RTMaxAudio.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RTMaxAudio/Pods-RTMaxAudio.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6537137420C91CBD001D1AEE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				786994602186FCD300F16B89 /* WebKit.framework in Frameworks */,
+				F374BC1AE2B80F9A1DB5CC2C /* libPods-RTMaxAudio.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2E599B4D53F878529D5842D5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A0B8A522DF293670A13F0A3B /* Pods-RTMaxAudio.debug.xcconfig */,
+				2539F0B5A32F2326F64B19E7 /* Pods-RTMaxAudio.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6537136E20C91CBD001D1AEE = {
+			isa = PBXGroup;
+			children = (
+				6537137920C91CBD001D1AEE /* RTMaxAudio */,
+				6537137820C91CBD001D1AEE /* Products */,
+				2E599B4D53F878529D5842D5 /* Pods */,
+				8C88D4BD7C52F859D4EA9A65 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		6537137820C91CBD001D1AEE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6537137720C91CBD001D1AEE /* RTMaxAudio.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6537137920C91CBD001D1AEE /* RTMaxAudio */ = {
+			isa = PBXGroup;
+			children = (
+				653713B520C940E8001D1AEE /* sound */,
+				6537139620C92138001D1AEE /* Common */,
+				6537139320C91F6F001D1AEE /* Main */,
+				6537139220C91F3F001D1AEE /* Base */,
+				6537138020C91CBD001D1AEE /* Main.storyboard */,
+				6537138320C91CBE001D1AEE /* Assets.xcassets */,
+				6537138820C91CBE001D1AEE /* Info.plist */,
+				6537138920C91CBE001D1AEE /* main.m */,
+				6537139120C91EA2001D1AEE /* RTMaxAudio.pch */,
+			);
+			path = RTMaxAudio;
+			sourceTree = "<group>";
+		};
+		6537139220C91F3F001D1AEE /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				6537137A20C91CBD001D1AEE /* AppDelegate.h */,
+				6537137B20C91CBD001D1AEE /* AppDelegate.m */,
+				6537139A20C923B8001D1AEE /* BaseViewController.h */,
+				6537139B20C923B8001D1AEE /* BaseViewController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		6537139320C91F6F001D1AEE /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				7869945B2186E8C300F16B89 /* Report */,
+				78DD34B62181A4C70015AAEF /* Call */,
+				6537139520C91F89001D1AEE /* AudioRoom */,
+				6537139420C91F80001D1AEE /* Home */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		6537139420C91F80001D1AEE /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				6537139D20C923D8001D1AEE /* RMHomeViewController.h */,
+				6537139E20C923D8001D1AEE /* RMHomeViewController.m */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		6537139520C91F89001D1AEE /* AudioRoom */ = {
+			isa = PBXGroup;
+			children = (
+				78DD34AF21815DF30015AAEF /* Model */,
+				653713AB20C92B1B001D1AEE /* View */,
+				7805DCED218056B100E7A9CF /* RATalkbackViewController.h */,
+				7805DCEE218056B100E7A9CF /* RATalkbackViewController.m */,
+			);
+			path = AudioRoom;
+			sourceTree = "<group>";
+		};
+		6537139620C92138001D1AEE /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				782FE01F21ACDABB00A8FD77 /* UIAlertController+Blocks.h */,
+				782FE01E21ACDABB00A8FD77 /* UIAlertController+Blocks.m */,
+				7805DCF021806E1C00E7A9CF /* NSDictionary+STSafeObject.h */,
+				7805DCF121806E1C00E7A9CF /* NSDictionary+STSafeObject.m */,
+				6537139720C9215A001D1AEE /* RMCommons.h */,
+				6537139820C9215A001D1AEE /* RMCommons.m */,
+				653713B220C94075001D1AEE /* RMMusicPlayer.h */,
+				653713B320C94075001D1AEE /* RMMusicPlayer.m */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		653713AB20C92B1B001D1AEE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				782FE02221ACDBD300A8FD77 /* RMAlertView.h */,
+				782FE02121ACDBD300A8FD77 /* RMAlertView.m */,
+				7842A73B218866AA002D6BCF /* InterruptView */,
+				7842A73A21882B9B002D6BCF /* Message */,
+				78DD34C42181CD320015AAEF /* Menu */,
+				653713AF20C933BF001D1AEE /* RASpeakButton.h */,
+				653713B020C933BF001D1AEE /* RASpeakButton.m */,
+				7805DCF7218074FD00E7A9CF /* RTTipLabel.h */,
+				7805DCF8218074FD00E7A9CF /* RTTipLabel.m */,
+				78DD34B3218192380015AAEF /* RMVideoView.h */,
+				78DD34B4218192380015AAEF /* RMVideoView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		653713B520C940E8001D1AEE /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				653713B720C940E8001D1AEE /* Talkie_Tick_Short.wav */,
+				653713B920C940E8001D1AEE /* Talkie_Tick_2.wav */,
+				653713BA20C940E8001D1AEE /* Talkie_Up.wav */,
+			);
+			path = sound;
+			sourceTree = "<group>";
+		};
+		7842A73A21882B9B002D6BCF /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				78DD34A7218153750015AAEF /* RMMessageView.h */,
+				78DD34A8218153750015AAEF /* RMMessageView.m */,
+				78DD34AA218157930015AAEF /* RMMessageCell.h */,
+				78DD34AB218157930015AAEF /* RMMessageCell.m */,
+				78DD34AC218157930015AAEF /* RMMessageCell.xib */,
+			);
+			path = Message;
+			sourceTree = "<group>";
+		};
+		7842A73B218866AA002D6BCF /* InterruptView */ = {
+			isa = PBXGroup;
+			children = (
+				7842A73C218866CD002D6BCF /* RMInterruptView.h */,
+				7842A73D218866CD002D6BCF /* RMInterruptView.m */,
+			);
+			path = InterruptView;
+			sourceTree = "<group>";
+		};
+		7869945B2186E8C300F16B89 /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				7869945C2186E8F000F16B89 /* RMReportViewController.h */,
+				7869945D2186E8F000F16B89 /* RMReportViewController.m */,
+			);
+			path = Report;
+			sourceTree = "<group>";
+		};
+		78DD34AF21815DF30015AAEF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				78DD34B021815E1F0015AAEF /* RMMessageModel.h */,
+				78DD34B121815E1F0015AAEF /* RMMessageModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		78DD34B62181A4C70015AAEF /* Call */ = {
+			isa = PBXGroup;
+			children = (
+				78DD34B72181A4E90015AAEF /* RMCallViewController.h */,
+				78DD34B82181A4E90015AAEF /* RMCallViewController.m */,
+			);
+			path = Call;
+			sourceTree = "<group>";
+		};
+		78DD34BA2181C4B10015AAEF /* SlideView */ = {
+			isa = PBXGroup;
+			children = (
+				78DD34BE2181C4B10015AAEF /* LHMenuScrollView.h */,
+				78DD34BC2181C4B10015AAEF /* LHMenuScrollView.m */,
+				78DD34BD2181C4B10015AAEF /* LHSlideViews.h */,
+				78DD34BB2181C4B10015AAEF /* LHSlideViews.m */,
+			);
+			path = SlideView;
+			sourceTree = "<group>";
+		};
+		78DD34C42181CD320015AAEF /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				78DD34BA2181C4B10015AAEF /* SlideView */,
+				78DD34C12181C54C0015AAEF /* RMMenuView.h */,
+				78DD34C22181C54C0015AAEF /* RMMenuView.m */,
+				7835079B2182A12D009AA456 /* RMPageViewController.h */,
+				7835079C2182A12D009AA456 /* RMPageViewController.m */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		8C88D4BD7C52F859D4EA9A65 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7869945F2186FCD300F16B89 /* WebKit.framework */,
+				81A125EBBD87AE9C11360E2B /* libPods-RTMaxAudio.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6537137620C91CBD001D1AEE /* RTMaxAudio */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6537138D20C91CBE001D1AEE /* Build configuration list for PBXNativeTarget "RTMaxAudio" */;
+			buildPhases = (
+				7EBBD009E89B998A345800AB /* [CP] Check Pods Manifest.lock */,
+				6537137320C91CBD001D1AEE /* Sources */,
+				6537137420C91CBD001D1AEE /* Frameworks */,
+				6537137520C91CBD001D1AEE /* Resources */,
+				653713AA20C926CC001D1AEE /* Embed Frameworks */,
+				7F4F2CBCEF1E1D67C89473EC /* [CP] Copy Pods Resources */,
+				11A7B84418E692D8E70EE02E /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RTMaxAudio;
+			productName = RTMaxAudio;
+			productReference = 6537137720C91CBD001D1AEE /* RTMaxAudio.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6537136F20C91CBD001D1AEE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = derek;
+				TargetAttributes = {
+					6537137620C91CBD001D1AEE = {
+						CreatedOnToolsVersion = 9.4;
+					};
+				};
+			};
+			buildConfigurationList = 6537137220C91CBD001D1AEE /* Build configuration list for PBXProject "RTMaxAudio" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 6537136E20C91CBD001D1AEE;
+			productRefGroup = 6537137820C91CBD001D1AEE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6537137620C91CBD001D1AEE /* RTMaxAudio */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6537137520C91CBD001D1AEE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6537138420C91CBE001D1AEE /* Assets.xcassets in Resources */,
+				78DD34AE218157930015AAEF /* RMMessageCell.xib in Resources */,
+				6537138220C91CBD001D1AEE /* Main.storyboard in Resources */,
+				653713BE20C940E8001D1AEE /* Talkie_Tick_2.wav in Resources */,
+				653713BC20C940E8001D1AEE /* Talkie_Tick_Short.wav in Resources */,
+				653713BF20C940E8001D1AEE /* Talkie_Up.wav in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		11A7B84418E692D8E70EE02E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RTMaxAudio/Pods-RTMaxAudio-frameworks.sh",
+				"${PODS_ROOT}/RTMaxEngine/RTMaxEngine/RTMaxEngine.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RTMaxEngine.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RTMaxAudio/Pods-RTMaxAudio-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7EBBD009E89B998A345800AB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RTMaxAudio-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F4F2CBCEF1E1D67C89473EC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-RTMaxAudio/Pods-RTMaxAudio-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RTMaxAudio/Pods-RTMaxAudio-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6537137320C91CBD001D1AEE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7835079D2182A12D009AA456 /* RMPageViewController.m in Sources */,
+				7805DCF221806E1C00E7A9CF /* NSDictionary+STSafeObject.m in Sources */,
+				78DD34BF2181C4B10015AAEF /* LHSlideViews.m in Sources */,
+				78DD34C02181C4B10015AAEF /* LHMenuScrollView.m in Sources */,
+				78DD34B221815E1F0015AAEF /* RMMessageModel.m in Sources */,
+				782FE02321ACDBD300A8FD77 /* RMAlertView.m in Sources */,
+				7805DCF9218074FD00E7A9CF /* RTTipLabel.m in Sources */,
+				7842A73E218866CD002D6BCF /* RMInterruptView.m in Sources */,
+				6537139C20C923B8001D1AEE /* BaseViewController.m in Sources */,
+				782FE02021ACDABB00A8FD77 /* UIAlertController+Blocks.m in Sources */,
+				6537139F20C923D8001D1AEE /* RMHomeViewController.m in Sources */,
+				653713B420C94075001D1AEE /* RMMusicPlayer.m in Sources */,
+				6537139920C9215A001D1AEE /* RMCommons.m in Sources */,
+				78DD34B5218192380015AAEF /* RMVideoView.m in Sources */,
+				7805DCEF218056B100E7A9CF /* RATalkbackViewController.m in Sources */,
+				653713B120C933BF001D1AEE /* RASpeakButton.m in Sources */,
+				78DD34AD218157930015AAEF /* RMMessageCell.m in Sources */,
+				78DD34A9218153750015AAEF /* RMMessageView.m in Sources */,
+				6537138A20C91CBE001D1AEE /* main.m in Sources */,
+				78DD34B92181A4E90015AAEF /* RMCallViewController.m in Sources */,
+				78DD34C32181C54C0015AAEF /* RMMenuView.m in Sources */,
+				6537137C20C91CBD001D1AEE /* AppDelegate.m in Sources */,
+				7869945E2186E8F000F16B89 /* RMReportViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		6537138020C91CBD001D1AEE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6537138120C91CBD001D1AEE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6537138B20C91CBE001D1AEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6537138C20C91CBE001D1AEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6537138E20C91CBE001D1AEE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0B8A522DF293670A13F0A3B /* Pods-RTMaxAudio.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5543CP4MRT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/RTMaxAudio/RTMaxAudio.pch";
+				INFOPLIST_FILE = RTMaxAudio/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dync.RTMaxAudio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6537138F20C91CBE001D1AEE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2539F0B5A32F2326F64B19E7 /* Pods-RTMaxAudio.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5543CP4MRT;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/RTMaxAudio/RTMaxAudio.pch";
+				INFOPLIST_FILE = RTMaxAudio/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.dync.RTMaxAudio;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6537137220C91CBD001D1AEE /* Build configuration list for PBXProject "RTMaxAudio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6537138B20C91CBE001D1AEE /* Debug */,
+				6537138C20C91CBE001D1AEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6537138D20C91CBE001D1AEE /* Build configuration list for PBXNativeTarget "RTMaxAudio" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6537138E20C91CBE001D1AEE /* Debug */,
+				6537138F20C91CBE001D1AEE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6537136F20C91CBD001D1AEE /* Project object */;
+}

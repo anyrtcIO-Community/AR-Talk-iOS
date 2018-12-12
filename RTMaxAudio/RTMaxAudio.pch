@@ -1,0 +1,58 @@
+//
+//  RTMaxAudio.pch
+//  RTMaxAudio
+//
+//  Created by derek on 2018/6/7.
+//  Copyright © 2018年 derek. All rights reserved.
+//
+
+#ifndef RTMaxAudio_pch
+#define RTMaxAudio_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
+
+
+static NSString *developerID = @"XXXX";
+static NSString *token = @"XXXX";
+static NSString *key = @"XXXX";
+static NSString *appID = @"XXXX";
+
+
+//RGB
+#define RGBA(r, g, b, a)    [UIColor colorWithRed:r/255.0f green:g/255.0f blue:b/255.0f alpha:a]
+#define RGB(r, g, b)     RGBA(r, g, b, 1.0f)
+
+// MARK: - 宏
+#define HardwareChangeNotification @"HardwareChangeNotification"
+
+#define  EnterForeground @"UIApplicationDidBecomeActiveNotification"
+
+//弱指针
+#define WEAKSELF __weak typeof(self)weakSelf =self
+
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+
+//语音库
+#import <RTMaxEngine/RTMaxEngineSDK.h>
+//常用方法
+#import "RMCommons.h"
+
+#import <Masonry.h>
+
+#import "RMCommons.h"
+
+#import "RMMusicPlayer.h"
+#import "RASpeakButton.h"
+
+#import "NSDictionary+STSafeObject.h"
+
+#import "XHToast.h"
+
+#import "RMVideoView.h"
+
+
+#endif /* RTMaxAudio_pch */
