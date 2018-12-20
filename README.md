@@ -4,6 +4,13 @@
 
 AR-Talk-iOS智能调度对讲，基于RTMaxEngine SDK，快速实现对讲、视频上报、视频监看、音视频通话，发送消息等功能。</br>
 
+### app体验
+
+##### 扫描二维码下载demo
+![image](https://www.pgyer.com/app/qrcode/SYA3)
+##### [WEB在线体验](https://www.anyrtc.io/demo/dispatch)
+
+
 ## 安装
 ### 1、编译环境
 Xcode 8以上</br>
@@ -43,9 +50,6 @@ pod 'RTMaxEngine'
 ### 资源中心
  [更多详细方法使用，请查看API文档](https://www.anyrtc.io/resoure)
 
-## 扫描二维码下载demo
-![Talk](/Talk.png)
-
 
 ## 支持的系统平台
 **iOS** 8.0及以上
@@ -54,9 +58,9 @@ pod 'RTMaxEngine'
 **iOS** armv7 、arm64。  支持bitcode
 ## ipv6
 苹果2016年6月新政策规定新上架app必须支持ipv6-only。该库已经适配
-## Android版
+## Android版Demo下载
 [AR-Talk-Android](https://github.com/anyRTC/AR-Talk-Android)
-## 网页版
+## 网页版Demo下载
 [AR-Talk-Web](https://github.com/anyRTC/AR-Talk-Web)
 
 
