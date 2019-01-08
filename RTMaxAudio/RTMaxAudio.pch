@@ -15,10 +15,10 @@
 #import <AVFoundation/AVFoundation.h>
 
 
-static NSString *developerID = @"XXXX";
-static NSString *token = @"XXXX";
-static NSString *key = @"XXXX";
-static NSString *appID = @"XXXX";
+static NSString *developerID = @"95878050";
+static NSString *token = @"b0b5e7baa78a310fa183448c39791f8b";
+static NSString *key = @"RJdvYj8pnYFG5E1GBcZ3SEBkeRZxOXvNu12KQHYYO+4";
+static NSString *appID = @"anyrtcLIlWYI5GIXsN";
 
 
 //RGB

@@ -19,11 +19,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-    // 配置开发者
+    //配置开发者
     [RTMaxEngineManager initEngineWithAnyRTCInfo:developerID appId:appID key:key toke:token];
+    [RTMaxEngineManager configServerForPriCloud:@"pro.anyrtc.io" port:9060];
+//    [RTMaxEngineManager configServerForPriCloud:@"192.168.199.219" port:9060];
     
-    // 私有云地址：联系客服部署私有云
-//    [RTMaxEngineManager configServerForPriCloud:@"" port:];
     
     //点击隐藏
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
