@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface RMReportViewController : BaseViewController
 
-@property (nonatomic, strong) RTMaxKit *maxKit;
+@property (nonatomic, strong) ARMaxKit *maxKit;
 @property (nonatomic, strong) RMVideoView *videoView;
 //上报中收到监看
 - (void)dismiss;

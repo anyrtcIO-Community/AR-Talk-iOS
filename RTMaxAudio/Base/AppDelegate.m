@@ -20,9 +20,9 @@
     // Override point for customization after application launch.
     
     //配置开发者
-    [RTMaxEngineManager initEngineWithAnyRTCInfo:developerID appId:appID key:key toke:token];
-    [RTMaxEngineManager configServerForPriCloud:@"pro.anyrtc.io" port:9060];
-//    [RTMaxEngineManager configServerForPriCloud:@"192.168.199.219" port:9060];
+    [ARMaxEngine initEngine:appID token:token key:key developerId:developerID];
+    //配置私有云
+    //[ARMaxEngine configServerForPriCloud:@"" port:];
     
     
     //点击隐藏

@@ -14,11 +14,11 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
-
-static NSString *developerID = @"95878050";
-static NSString *token = @"b0b5e7baa78a310fa183448c39791f8b";
-static NSString *key = @"RJdvYj8pnYFG5E1GBcZ3SEBkeRZxOXvNu12KQHYYO+4";
-static NSString *appID = @"anyrtcLIlWYI5GIXsN";
+#error 配置开发者信息
+static NSString *developerID = @"XXXX";
+static NSString *token = @"XXXX";
+static NSString *key = @"XXXX";
+static NSString *appID = @"XXXX";
 
 
 //RGB
@@ -37,7 +37,7 @@ static NSString *appID = @"anyrtcLIlWYI5GIXsN";
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
 //语音库
-#import <RTMaxEngine/RTMaxEngineSDK.h>
+#import <RTMaxEngine/ARMaxSDK.h>
 //常用方法
 #import "RMCommons.h"
 

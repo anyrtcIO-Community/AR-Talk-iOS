@@ -17,7 +17,7 @@ typedef NS_ENUM(NSInteger,RMCallType) {
 
 @interface RMCallViewController : BaseViewController
 
-@property (nonatomic, strong) RTMaxKit *maxKit;
+@property (nonatomic, strong) ARMaxKit *maxKit;
 
 @property (nonatomic, strong) NSMutableArray *videoArr;
 

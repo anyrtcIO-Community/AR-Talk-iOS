@@ -19,13 +19,13 @@
 #import "UIAlertController+Blocks.h"
 
 
-@interface RATalkbackViewController ()<RTMaxKitDelegate>
+@interface RATalkbackViewController ()<ARMaxKitDelegate>
 {
      BOOL _isOtherSpeaking;
 }
 @property (strong, nonatomic) RASpeakButton *audioButtonView;
 
-@property (nonatomic, strong) RTMaxKit *maxKit;
+@property (nonatomic, strong) ARMaxKit *maxKit;
 @property (nonatomic, strong) NSString *userId;
 
 // 提示信息
@@ -69,15 +69,14 @@
 }
 - (void)initializeMaxKit{
     //实例化
-    self.maxKit = [[RTMaxKit alloc] initWithDelegate:self];
-    [self.maxKit setAudioDetect:YES];
+    self.maxKit = [[ARMaxKit alloc] initWithDelegate:self];
+    [self.maxKit setAudioActiveCheck:YES];
     self.userId = [RMCommons randomNumString:4];
     
     NSDictionary *dict  = [[NSDictionary alloc] initWithObjectsAndKeys:
                            self.userId,@"userId",
                            nil];
-    
-    [self.maxKit joinTalkGroup:@"123456789" userId:self.userId userData:[RMCommons fromDicToJSONStr:dict]];
+    [self.maxKit joinTalkGroupByToken:nil groupId:@"123456789" userId:self.userId userData:[RMCommons fromDicToJSONStr:dict]];
 }
 
 - (void)initializeInterface{
@@ -307,16 +306,16 @@
     
     return item;
 }
-#pragma mark - RTMaxKitDelegate 对讲调度相关回调
+#pragma mark - ARMaxKitDelegate 对讲调度相关回调
 
 #pragma mark - 进出组是否成功
 - (void)onRTCJoinTalkGroupOK:(NSString *)strGroupId {
     //加入对讲组成功/切换对讲组成功
 }
-- (void)onRTCJoinTalkGroupFailed:(NSString*)strGroupId code:(int)nCode {
+- (void)onRTCJoinTalkGroupFailed:(NSString*)strGroupId code:(ARMaxCode)code reason:(NSString*)reason {
      //加入对讲组失败/切换对讲组失败
 }
-- (void)onRTCLeaveTalkGroup:(int)nCode {
+- (void)onRTCLeaveTalkGroup:(ARMaxCode)code {
     
 }
 #pragma mark - 对讲相关回调
@@ -329,42 +328,42 @@
     _isOtherSpeaking = NO;
     self.tipLabel.messageItem = [self message:TipMessageTypeSpeaking withNickName:@"我" withLineNum:0 withText:nil];
 }
-- (void)onRTCTalkOn:(NSString*)strUserId userData:(NSString*)strUserData {
+- (void)onRTCTalkOn:(NSString*)userId userData:(NSString*)userData {
     //其他人正在对讲组中讲话
    
     
     _isOtherSpeaking = YES;
     //别人上麦了
-    self.tipLabel.messageItem = [self message:TipMessageTypeSpeaking  withNickName:strUserId withLineNum:0 withText:nil];
+    self.tipLabel.messageItem = [self message:TipMessageTypeSpeaking  withNickName:userId withLineNum:0 withText:nil];
     
 }
-- (void)onRTCTalkClosed:(int)nCode userId:(NSString*)strUserId userData:(NSString*)strUserData {
+- (void)onRTCTalkClosed:(ARMaxCode)code userId:(NSString*)userId userData:(NSString*)userData {
     //对讲结束
    // NSLog(@"onRtcTalkClosed:%d",nCode);
-    if (nCode == 802) {
+    if (code == 802) {
         //抢麦没权限
         self.tipLabel.messageItem = [self message:TipMessageTypeSpeakingOther withNickName:nil withLineNum:0 withText:nil];
         if (_audioButtonView) {
             [_audioButtonView reset];
         }
         
-    } else if (nCode == 810) {
+    } else if (code == 810) {
         // 麦被抢了
         [[RMMusicPlayer sharedInstance] playOver];
         [_maxKit cancleTalk];
         [_audioButtonView reset];
         
-        self.tipLabel.messageItem =[self message:TipMessageTypeSpeakingInterrupt withNickName:strUserId withLineNum:self.tipLabel.number withText:nil];
+        self.tipLabel.messageItem =[self message:TipMessageTypeSpeakingInterrupt withNickName:userId withLineNum:self.tipLabel.number withText:nil];
         
     } else {
         //当前讲话人下线
-        if (!_isOtherSpeaking && ![strUserId isEqualToString:self.userId]) {
-            [RMCommons showCenterWithText:[NSString stringWithFormat:@"当前对话被%@打断",strUserId]];
+        if (!_isOtherSpeaking && ![userId isEqualToString:self.userId]) {
+            [RMCommons showCenterWithText:[NSString stringWithFormat:@"当前对话被%@打断",userId]];
         }
         _isOtherSpeaking = NO;
         [_audioButtonView reset];
         
-        self.tipLabel.messageItem = [self message:TipMessageTypeSpeakingEnd withNickName:strUserId withLineNum:self.tipLabel.number withText:nil];
+        self.tipLabel.messageItem = [self message:TipMessageTypeSpeakingEnd withNickName:userId withLineNum:self.tipLabel.number withText:nil];
         
     }
 }
@@ -377,13 +376,13 @@
         }
     }
 }
-- (void)onRTCMemberNum:(int)nNum {
+- (void)onRTCMemberNum:(int)num {
     
-    self.tipLabel.messageItem  = [self message:TipMessageTypeLine withNickName:nil withLineNum:nNum withText:self.tipLabel.text];
-    self.tipLabel.number = nNum;
+    self.tipLabel.messageItem  = [self message:TipMessageTypeLine withNickName:nil withLineNum:num withText:self.tipLabel.text];
+    self.tipLabel.number = num;
 }
 #pragma mark - P2P相关
-- (void)onRTCTalkP2POn:(NSString*)strUserId userData:(NSString*)strUserData {
+- (void)onRTCTalkP2POn:(NSString*)userId userData:(NSString*)userData {
     // 麦被抢了
     [[RMMusicPlayer sharedInstance] playOver];
     [_audioButtonView reset];
@@ -391,32 +390,32 @@
         [self.interruptView dismiss];
     }
     self.interruptView = [RMInterruptView new];
-    self.interruptView.userID = strUserId;
+    self.interruptView.userID = userId;
     [self.interruptView show];
 
 }
-- (void)onRTCTalkP2POff:(NSString*)strUserData {
+- (void)onRTCTalkP2POff:(NSString*)userData {
     if (self.interruptView) {
         [self.interruptView dismiss];
     }
 }
 #pragma mark - 监看相关
-- (void)onRTCVideoMonitorRequest:(NSString*)strUserId userData:(NSString*)strUserData {
+- (void)onRTCVideoMonitorRequest:(NSString*)userId userData:(NSString*)userData {
     
     if (self.groupStatus == GroupStatusMonitor || self.groupStatus == GroupStatusCall || self.groupStatus == GroupStatusReport) {
-        [_maxKit rejectVideoMonitor:strUserId];
+        [_maxKit rejectVideoMonitor:userId];
         return;
     }
     //状态更改（自己被监看了）
     self.groupStatus = GroupStatusMonitor;
-    [_maxKit acceptVideoMonitor:strUserId];
+    [_maxKit acceptVideoMonitor:userId];
     
-    [RMCommons showCenterWithText:[NSString stringWithFormat:@"正在被用户%@监看",strUserId]];
+    [RMCommons showCenterWithText:[NSString stringWithFormat:@"正在被用户%@监看",userId]];
     _localView = [[UIView alloc] initWithFrame:CGRectZero];
     [_maxKit setLocalVideoCapturer:_localView option:nil];
    
 }
-- (void)onRTCVideoMonitorClose:(NSString*)strUserId userData:(NSString*)strUserData {
+- (void)onRTCVideoMonitorClose:(NSString*)userId userData:(NSString*)userData {
     // 收到监看结束
     //监看关闭的回调
     _localView = nil;
@@ -424,50 +423,50 @@
     [RMCommons showCenterWithText:@"监看已结束"];
 }
 
-- (void)onRTCVideoMonitorResult:(NSString*)strUserId code:(int)nCode userData:(NSString*)strUserData {
+- (void)onRTCVideoMonitorResult:(NSString*)userId code:(ARMaxCode)code userData:(NSString*)userData {
     
 }
 #pragma mark - 视频上报
-- (void)onRTCVideoReportRequest:(NSString*)strUserId userData:(NSString*)strUserData {
+- (void)onRTCVideoReportRequest:(NSString*)userId userData:(NSString*)userData {
     
 }
-- (void)onRTCVideoReportClose:(NSString*)strUserId {
+- (void)onRTCVideoReportClose:(NSString*)userId {
     
 }
 
 #pragma mark - 音视频呼叫相关
-- (void)onRTCMakeCallOK:(NSString*)strCallId {
+- (void)onRTCMakeCallOK:(NSString*)callId {
 }
-- (void)onRTCAcceptCall:(NSString*)strUserId userData:(NSString*)strUserData {
+- (void)onRTCAcceptCall:(NSString*)userId userData:(NSString*)userData {
 }
-- (void)onRTCRejectCall:(NSString*)strUserId code:(int)nCode userData:(NSString*)strUserData {
+- (void)onRTCRejectCall:(NSString*)userId code:(ARMaxCode)code userData:(NSString*)userData {
 }
-- (void)onRTCLeaveCall:(NSString*)strUserId {
+- (void)onRTCLeaveCall:(NSString*)userId {
     // 被叫方调用方法时，主叫方收到
 }
-- (void)onRTCReleaseCall:(NSString*)strCallId {
+- (void)onRTCReleaseCall:(NSString*)callId {
 }
 
-- (void)onRTCMakeCall:(NSString*)strCallId callType:(int)nCallType userId:(NSString*)strUserId userData:(NSString*)strUserData {
+- (void)onRTCMakeCall:(NSString*)callId callType:(int)callType userId:(NSString*)userId userData:(NSString*)userData {
    
     //收到呼叫的回调
     if (self.groupStatus == GroupStatusMonitor) {
         //监看中收到呼叫
-        [_maxKit rejectCall:strCallId];
+        [_maxKit rejectCall:callId];
         return;
     }
     if (self.groupStatus == GroupStatusReport) {
         //上报中收到呼叫
-        [_maxKit rejectCall:strCallId];
+        [_maxKit rejectCall:callId];
         return;
     }
     if (self.groupStatus == GroupStatusCall) {
-        [_maxKit rejectCall:strCallId];
+        [_maxKit rejectCall:callId];
         return;
     }
     self.groupStatus = GroupStatusCall;
     NSString *title;
-    if (nCallType==0) {
+    if (callType==0) {
         title = @"管理员对您发起视频呼叫是否同意？";
     }else{
         title = @"管理员对您发起音频呼叫是否同意？";
@@ -477,8 +476,8 @@
         if (weakSelf) {
             __strong typeof(weakSelf) strongSelf = weakSelf;
             if (buttonIndex) {
-                [strongSelf.maxKit acceptCall:strCallId];
-                if (nCallType==0) {
+                [strongSelf.maxKit acceptCall:callId];
+                if (callType==0) {
                     RMVideoView *videoView = [[RMVideoView alloc] init];
                     videoView.pubID = @"Video_MySelf";
                     // 视频呼叫
@@ -495,12 +494,12 @@
                 [[RMCommons topViewController] presentViewController:weakSelf.callVc animated:YES completion:nil];
             } else {
                 //拒绝
-                [strongSelf->_maxKit rejectCall:strCallId];
+                [strongSelf->_maxKit rejectCall:callId];
                 weakSelf.groupStatus = GroupStatusNone;
             }
         }
     }];
-    alert.callId = strCallId;
+    alert.callId = callId;
     [alert show];
     
 //    [self.maxKit acceptCall:strCallId];
@@ -524,28 +523,28 @@
     //拒绝
     //[self.maxKit rejectCall:strCallId];
 }
-- (void)onRTCEndCall:(NSString*)strCallId userId:(NSString*)strUserId code:(int)nCode {
+- (void)onRTCEndCall:(NSString*)callId userId:(NSString*)userId code:(ARMaxCode)code {
     
 }
--(void)onRTCOpenVideoRender:(NSString*)strRTCPeerId pubId:(NSString *)strRTCPubId userId:(NSString*)strUserId userData:(NSString*)strUserData {
+-(void)onRTCOpenRemoteVideoRender:(NSString*)peerId pubId:(NSString *)pubId userId:(NSString*)userId userData:(NSString*)userData {
     
     if (self.groupStatus == GroupStatusCall) {
         RMVideoView *videoView = [[RMVideoView alloc] init];
-        [self.maxKit setRTCVideoRender:strRTCPubId render:videoView.videoView];
-        videoView.pubID = strRTCPubId;
-        videoView.userID = strUserId;
+        [self.maxKit setRemoteVideoRender:videoView.videoView pubId:pubId];
+        videoView.pubID = pubId;
+        videoView.userID = userId;
         [self.videoArr addObject:videoView];
         self.callVc.videoArr = self.videoArr;
         [self.callVc refreshLayout];
     }
 }
--(void)onRTCCloseVideoRender:(NSString*)strRTCPeerId pubId:(NSString *)strRTCPubId userId:(NSString*)strUserId {
+-(void)onRTCCloseRemoteVideoRender:(NSString*)peerId pubId:(NSString *)pubId userId:(NSString*)userId{
     // 被呼叫的
     if (self.groupStatus == GroupStatusCall) {
         //通话的
         [self.videoArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             RMVideoView *rmVideoView = (RMVideoView *)obj;
-            if ([rmVideoView.pubID isEqualToString:strRTCPubId]) {
+            if ([rmVideoView.pubID isEqualToString:pubId]) {
                 [rmVideoView removeFromSuperview];
                 [self.videoArr removeObject:rmVideoView];
                 *stop = YES;
@@ -570,20 +569,20 @@
         }
     }];
 }
-- (void)onRTCOpenAudioTrack:(NSString*)strRTCPeerId userId:(NSString *)strUserId userData:(NSString*)strUserData {
+- (void)onRTCOpenRemoteAudioTrack:(NSString*)peerId userId:(NSString *)userId userData:(NSString*)userData {
     if (self.groupStatus == GroupStatusCall) {
         RMVideoView *videoView = [[RMVideoView alloc] init];
-        videoView.userID = strUserId;
+        videoView.userID = userId;
         [self.videoArr addObject:videoView];
         self.callVc.videoArr = self.videoArr;
         [self.callVc refreshLayout];
     }
 }
-- (void)onRTCCloseAudioTrack:(NSString*)strRTCPeerId userId:(NSString *)strUserId {
+- (void)onRTCCloseRemoteAudioTrack:(NSString*)peerId userId:(NSString *)userId {
     //通话的
     [self.videoArr enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         RMVideoView *rmVideoView = (RMVideoView *)obj;
-        if ([rmVideoView.userID isEqualToString:strUserId]) {
+        if ([rmVideoView.userID isEqualToString:userId]) {
             if (rmVideoView.superview) {
                  [rmVideoView removeFromSuperview];
             }
