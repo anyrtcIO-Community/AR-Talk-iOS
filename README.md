@@ -40,7 +40,7 @@ pod 'RTMaxEngine'
 登陆[AnyRTC官网](https://www.anyrtc.io/)
 
 ### 填写信息
-创建应用，在应用管理获取AppID，AppToken，替换AppDelegate.h中的相关信息
+创建应用，在应用管理获取应用ID，应用Token，替换AppDelegate.h中的相关信息
 
 ### 操作步骤：
 1、Web端开启调度台，在启动一个手机</br>
