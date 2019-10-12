@@ -48,11 +48,6 @@
 - (void)onRTCApplyTalkOk;
 
 /**
- 申请对讲成功之后，语音通道建立，可以开始讲话回调
- */
-- (void)onRTCTalkCouldSpeak;
-
-/**
  其他人正在对讲组中讲话的回调
  
  @param userId 用户Id

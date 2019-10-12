@@ -11,6 +11,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+// Image type
+typedef NS_ENUM(NSInteger,ARCaptureType) {
+    YUV420PType = 0,//YUV  -  kCVPixelFormatType_420YpCbCr8BiPlanarFullRange,kCVPixelFormatType_420YpCbCr8BiPlanarVideoRange
+    RGBType         //RGB  -  kCVPixelFormatType_32BGRA
+};
+
 // 用户信息
 @interface ARUserItem : NSObject
 
@@ -20,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *userData;
 @property (nonatomic, assign) BOOL audioEnable;
 @property (nonatomic, assign) BOOL videoEnable;
+
 @end
 
 @interface ARObjects : NSObject
@@ -48,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  视频码率：如果不配置，使用分辨率默认的;
- 说明：区间大小（65~1280)
+ 说明：区间大小（50~1280)
  */
 @property (nonatomic, assign) int  bitrate;
 /**

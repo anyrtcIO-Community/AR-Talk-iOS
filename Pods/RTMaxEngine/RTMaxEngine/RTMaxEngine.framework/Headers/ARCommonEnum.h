@@ -9,6 +9,11 @@
 #ifndef ARCommonEnum_h
 #define ARCommonEnum_h
 
+#import <UIKit/UIKit.h>
+
+//截图回调
+typedef void(^ScreenshotsBlock)(UIImage * _Nullable image);
+
 // 网络质量
 typedef NS_ENUM(NSInteger,ARNetQuality) {
     ARNetQualityExcellent = 1, // 优
@@ -102,11 +107,11 @@ typedef NS_ENUM(NSInteger, ARCameraType){
 // 视频填充模式
 typedef NS_ENUM(NSInteger, ARVideoRenderMode){
     //表示按比例缩放并且填满view，意味着图片可能超出view，可能被裁减掉
-    ARVideoRenderScaleAspectFill = 0,
-    //表示通过缩放来填满view，也就是说图片会变形
-    ARVideoRenderScaleToFill,
+    ARVideoRenderScaleAspectFill = 1,
     //表示按比例缩放并且图片要完全显示出来，意味着view可能会留有空白
-    ARVideoRenderScaleAspectFit
+    ARVideoRenderScaleAspectFit,
+    //表示通过缩放来填满view，也就是说图片会变形
+    ARVideoRenderScaleToFill
 };
 
 // 滤镜(美颜相机用)
@@ -118,5 +123,13 @@ typedef NS_ENUM(NSInteger, ARCameraFilterMode){
     //高斯模糊
     ARCameraFilterGaussianBlur
 };
+// 视频方向
+typedef NS_ENUM(NSInteger,ARVideoRotation){
+    ARVideoRoation_0 = 0,
+    ARVideoRoation_90 = 90,
+    ARVideoRoation_180 = 180,
+    ARVideoRoation_270 = 270,
+};
+
 
 #endif /* ARCommonEnum_h */

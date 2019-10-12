@@ -146,6 +146,36 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)setRemotePeerAVEnable:(NSString*)peerId audio:(BOOL)enable video:(BOOL)enable;
 
+/**
+ 重置音频录音和播放
+ 
+ 说明：使用AVplayer播放后调用该方法。
+ */
+- (void)doRestartAudioRecord;
+
+
+/**
+ 启用/关闭扬声器播放
+
+ @param enableSpeaker YES: 切换到外放;NO: 切换到听筒。如果设备连接了耳机，则语音路由走耳机
+ 
+ **说明**
+ 该方法仅适用于 iOS
+ 请确保在调用此方法前已调用过 joinTalkGroupByToken 方法
+ SDK 会调用 setCategory(AVAudioSessionCategoryPlayAndRecord) 并配置耳麦或者外放，所以调用该方法后所有声音的路由都会按照该方法设置
+ 
+ @return 成功与失败
+ */
+- (BOOL)setEnableSpeakerphone:(BOOL)enableSpeaker;
+
+
+/**
+ 查询扬声器启用状态
+
+ @return YES: 扬声器已开启，语音会输出到扬声器/NO: 扬声器未开启，语音会输出到非扬声器（听筒、耳机等）
+ */
+- (BOOL)isSpeakerphoneEnabled;
+
 #pragma mark - 视频流信息监测
 
 /**

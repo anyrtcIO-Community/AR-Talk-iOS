@@ -71,7 +71,18 @@
     //实例化
     self.maxKit = [[ARMaxKit alloc] initWithDelegate:self];
     [self.maxKit setAudioActiveCheck:YES];
-    self.userId = [RMCommons randomNumString:4];
+    self.userId = NULL;
+    
+    NSString *userId = [[NSUserDefaults standardUserDefaults] objectForKey:@"User_PhoneNumber"];
+    if (userId.length != 0) {
+        self.userId = userId;
+        
+    }else{
+        self.userId = [RMCommons randomNumString:4];
+        [[NSUserDefaults standardUserDefaults] setObject:self.userId forKey:@"User_PhoneNumber"];
+        [[NSUserDefaults standardUserDefaults]synchronize];
+    }
+    
     
     NSDictionary *dict  = [[NSDictionary alloc] initWithObjectsAndKeys:
                            self.userId,@"userId",
@@ -321,13 +332,11 @@
 #pragma mark - 对讲相关回调
 - (void)onRTCApplyTalkOk {
     //申请对讲成功
+     _isOtherSpeaking = NO;
+     self.tipLabel.messageItem = [self message:TipMessageTypeSpeaking withNickName:@"我" withLineNum:0 withText:nil];
      [[RMMusicPlayer sharedInstance] playScuess];
 }
-- (void)onRTCTalkCouldSpeak {
-    
-    _isOtherSpeaking = NO;
-    self.tipLabel.messageItem = [self message:TipMessageTypeSpeaking withNickName:@"我" withLineNum:0 withText:nil];
-}
+
 - (void)onRTCTalkOn:(NSString*)userId userData:(NSString*)userData {
     //其他人正在对讲组中讲话
    
@@ -527,7 +536,7 @@
     
 }
 -(void)onRTCOpenRemoteVideoRender:(NSString*)peerId pubId:(NSString *)pubId userId:(NSString*)userId userData:(NSString*)userData {
-    
+    NSLog(@"onRTCOpenRemoteVideoRender:%@ pubId:%@ userId:%@ userData:%@",peerId,pubId,userId,userData);
     if (self.groupStatus == GroupStatusCall) {
         RMVideoView *videoView = [[RMVideoView alloc] init];
         [self.maxKit setRemoteVideoRender:videoView.videoView pubId:pubId];

@@ -8,12 +8,13 @@
 
 #import "RMMusicPlayer.h"
 
-@interface RMMusicPlayer()
+@interface RMMusicPlayer()<AVAudioPlayerDelegate>
 {
-    dispatch_queue_t queueDis;
+
 }
-//进会提醒
-@property (nonatomic, strong) AVPlayer * player;
+
+@property (nonatomic, strong) AVAudioPlayer *player;
+
 
 @property (nonatomic, copy) void (^completionBlock)(void);
 
@@ -26,7 +27,6 @@
 {
     self = [super init];
     if (self) {
-        queueDis = dispatch_queue_create("com.dync.musicQueue", DISPATCH_QUEUE_CONCURRENT);
     }
     return self;
 }
@@ -41,59 +41,73 @@ static RMMusicPlayer *playerManager;
     return playerManager;
 }
 - (void)play:(NSURL *)url loops:(NSInteger)loops completion:(void (^)(void))completion {
+   
+    [self stop];
     
-//    [self stop];
-    //dispatch_async(queueDis, ^{
-       // dispatch_async(dispatch_get_main_queue(), ^{
-            NSError *error;
-            if ([[AVAudioSession sharedInstance].category isEqualToString:@"AVAudioSessionCategoryMultiRoute"]) {
-                return;
-            }
-
-            BOOL success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryMultiRoute error:&error];
-
-            if (success) {
-                [[AVAudioSession sharedInstance] setActive:YES error:&error];
-            }
-       // });
-
-        AVPlayerItem *playerItem = [[AVPlayerItem alloc] initWithURL:url];
-        if (!self.player) {
-             self.player = [[AVPlayer alloc] initWithPlayerItem:playerItem];
-             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayDidEnd) name:AVPlayerItemDidPlayToEndTimeNotification object:nil];
+    NSError *error;
+    _player = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
+    _player.numberOfLoops = loops;
+    _player.volume = 1.0;
+    _player.delegate = self;
+    BOOL ret = [_player prepareToPlay];
+    if (ret) {
+        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+        [audioSession setCategory:AVAudioSessionCategoryPlayback error:&error];
+        if (error) {
+            
         }
-        [self.player replaceCurrentItemWithPlayerItem:playerItem];
-//        NSLog(@"moviePlayDidStart");
-        [self.player play];
-        self.completionBlock = completion;
-   // });
+    }
+    ret = [self.player play];
+    if (!ret) {
+        [self.player stop];
+        error = [NSError errorWithDomain:@"AVAudioPlayer播放失败" code:-1 userInfo:nil];
+    }
+    _completionBlock = completion;
+
 }
 
 - (void)stop {
-    dispatch_async(queueDis, ^{
-        if (self.player) {
-            [self.player pause];
-            self.completionBlock = nil;
-        }
-    });
-}
-- (void)moviePlayDidEnd {
-//    NSLog(@"moviePlayDidEnd");
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSError *error;
-        if (![[AVAudioSession sharedInstance].category isEqualToString:@"AVAudioSessionCategoryPlayAndRecord"]) {
-            BOOL success = [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
+    if (_player && _player.isPlaying) {
+        [_player stop];
+        _player.delegate = nil;
+        _player = nil;
+        _completionBlock = nil;
+    }
+    NSError *error;
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayAndRecord error:&error];
+    if (error) {
+        
+    }
+    if (![self hasHeadset]) {
+        // 是否是扬声器，不是扬声器打开扬声器
+        AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+        [audioSession overrideOutputAudioPort:AVAudioSessionPortOverrideSpeaker error:nil];
+    }
 
-            if (success) {
-                [[AVAudioSession sharedInstance] setActive:YES error:&error];
-            }
-        }
-    });
 }
 
-void soundCompleteCallBack(SystemSoundID soundID, void *clientData)
+- (void)audioPlayerDidFinishPlaying:(AVAudioPlayer *)__unused player successfully:(BOOL)__unused flag
 {
-    NSLog(@"播放完成");
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self stop];
+        if (self.completionBlock != nil)
+            self.completionBlock();
+    });
+}
+
+- (BOOL)hasHeadset
+{
+    UInt32 propertySize = sizeof(CFStringRef);
+    CFStringRef state   = nil;
+    AudioSessionGetProperty(kAudioSessionProperty_AudioRoute ,&propertySize,&state);
+    
+    //根据状态判断是否为耳机状态
+    if ([(__bridge NSString *)state isEqualToString:@"Headphone"] ||[(__bridge NSString *)state isEqualToString:@"HeadsetInOut"]){
+        return YES;
+    }else{
+        return NO;
+    }
+    return NO;
 }
 
 - (void)playUp {
