@@ -42,4 +42,6 @@
 
 //模糊图片
 +(UIImage *)coreBlurImage:(UIImage *)image withBlurNumber:(CGFloat)blur;
+
++ (BOOL)isIPhoneX;
 @end

@@ -96,6 +96,12 @@
             _interruptTypeItem = messageItem;
             [self showInterrupt];
             break;
+        case TipMessageTypeSpeakingTimeOut:
+        case TipMessageTypeSpeakingTimeOutError:
+        case TipMessageTypeSpeakingServerError:
+            _errorTypeItem = messageItem;
+            [self showError];
+            break;
         default:
             break;
     }

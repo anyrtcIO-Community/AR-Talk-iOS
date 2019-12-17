@@ -14,7 +14,7 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 
-#error 配置开发者信息
+//#error 配置开发者信息
 static NSString *developerID = @"XXXX";
 static NSString *token = @"XXXX";
 static NSString *key = @"XXXX";

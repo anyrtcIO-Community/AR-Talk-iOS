@@ -30,8 +30,9 @@
 
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     RATalkbackViewController *talkController = [storyboard instantiateViewControllerWithIdentifier:@"talkBack"];
+//    talkController.modalPresentationStyle = UIModalPresentationFullScreen;
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:talkController];
-    
+    nav.modalPresentationStyle = UIModalPresentationFullScreen;
     [self presentViewController:nav animated:YES completion:nil];
 }
 - (void)didReceiveMemoryWarning {

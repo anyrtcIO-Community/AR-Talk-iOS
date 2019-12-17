@@ -99,10 +99,11 @@
     [self.speakButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self);
         make.centerY.equalTo(self);
-        make.height.equalTo(@60);
-        make.width.equalTo(@160);
+        make.height.equalTo(weakSelf);
+        make.width.equalTo(weakSelf);
     }];
-    [self.speakButton setBackgroundImage:[UIImage imageNamed:@"麦克风"] forState:UIControlStateNormal];
+    [self.speakButton setBackgroundImage:[UIImage imageNamed:@"audio_default"] forState:UIControlStateNormal];
+    [self.speakButton setBackgroundImage:[UIImage imageNamed:@"audio_active"] forState:UIControlStateHighlighted];
     [self addEvent];
 }
 
@@ -169,8 +170,8 @@
     [self.bgImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(weakSelf);
         make.centerY.equalTo(weakSelf);
-        make.height.equalTo(@60);
-        make.width.equalTo(@60);
+        make.height.equalTo(weakSelf);
+        make.width.equalTo(weakSelf);
     }];
     
     [UIView animateWithDuration:.2 animations:^{

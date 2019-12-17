@@ -41,7 +41,7 @@ static RMMusicPlayer *playerManager;
     return playerManager;
 }
 - (void)play:(NSURL *)url loops:(NSInteger)loops completion:(void (^)(void))completion {
-   
+    return;
     [self stop];
     
     NSError *error;
@@ -67,6 +67,7 @@ static RMMusicPlayer *playerManager;
 }
 
 - (void)stop {
+    return;
     if (_player && _player.isPlaying) {
         [_player stop];
         _player.delegate = nil;

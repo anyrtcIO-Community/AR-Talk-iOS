@@ -20,6 +20,10 @@ typedef NS_ENUM(NSInteger,TipMessageType){
     TipMessageTypeSpeakingError,//自己抢麦出错
     TipMessageTypeSpeakingOther,//其他人在说话
     TipMessageTypeSpeakingInterrupt,//自己说话被打断
+    TipMessageTypeSpeakingTimeOutError,//超时麦被释放，服务器没收到语音
+    TipMessageTypeSpeakingTimeOut,//自己说话超时
+    TipMessageTypeSpeakingServerError,// 对讲服务异常
+    
 };
 
 @interface MessageItem:NSObject

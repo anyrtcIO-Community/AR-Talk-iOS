@@ -83,7 +83,7 @@
         <!--Talkback View Controller-->
         <scene sceneID="4JD-3o-sj0">
             <objects>
-                <viewController storyboardIdentifier="talkBack" id="Pz1-hP-oOF" customClass="RATalkbackViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="talkBack" modalPresentationStyle="fullScreen" id="Pz1-hP-oOF" customClass="RATalkbackViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2FL-1h-sQj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -93,7 +93,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGq-Eq-H2s" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="905" y="49"/>
+            <point key="canvasLocation" x="870" y="363"/>
         </scene>
         <!--Call View Controller-->
         <scene sceneID="mxZ-qV-qjk">
@@ -139,7 +139,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Whe-nx-cDF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-62" y="111"/>
+            <point key="canvasLocation" x="-148" y="363"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="xSd-YT-cyS">
@@ -236,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zvs-xg-5lm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1740" y="48"/>
+            <point key="canvasLocation" x="1943" y="363"/>
         </scene>
     </scenes>
     <resources>

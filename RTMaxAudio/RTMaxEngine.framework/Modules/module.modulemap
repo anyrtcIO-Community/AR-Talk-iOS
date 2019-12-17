@@ -1,0 +1,6 @@
+framework module RTMaxEngine {
+  umbrella header "RTMaxEngine.h"
+
+  export *
+  module * { export * }
+}

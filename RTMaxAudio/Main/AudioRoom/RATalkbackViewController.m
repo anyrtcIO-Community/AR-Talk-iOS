@@ -45,6 +45,9 @@
 @property (nonatomic, strong) RMReportViewController *reportVc;
 
 @property (nonatomic, strong) RMInterruptView *interruptView;
+
+@property (nonatomic, assign) BOOL isSpeakButtonOk;
+
 @end
 
 @implementation RATalkbackViewController
@@ -106,7 +109,7 @@
     _audioButtonView = [[RASpeakButton alloc]init];
     _audioButtonView.stateButton =  ButtonStateRobType;
     
-    _audioButtonView.frame = CGRectMake(CGRectGetWidth(self.view.frame) /2 - 80, CGRectGetHeight(self.view.frame) - 100, 160, 60);
+    _audioButtonView.frame = CGRectMake(CGRectGetWidth(self.view.frame) /2 - 80, CGRectGetHeight(self.view.frame) - 200, 160, 160);
     [self.view addSubview:_audioButtonView];
     
     UILabel *userLabel = [UILabel new];
@@ -121,7 +124,14 @@
     }];
     
     // 工具栏
-    self.menuView = [[RMMenuView alloc] initWithFrame:CGRectMake(0, 64, CGRectGetWidth(self.view.frame), 190)];
+    
+    if ([RMCommons isIPhoneX]) {
+        self.menuView = [[RMMenuView alloc] initWithFrame:CGRectMake(0, 84, CGRectGetWidth(self.view.frame), 190)];
+    }else{
+        self.menuView = [[RMMenuView alloc] initWithFrame:CGRectMake(0, 64, CGRectGetWidth(self.view.frame), 190)];
+    }
+    
+    
     self.menuView.mediaBlock = ^(NSString * _Nonnull userID) {
         [weakSelf reportUser:userID];
     };
@@ -148,14 +158,19 @@
         if (strongSelf->_isOtherSpeaking) {
             strongSelf.tipLabel.messageItem = [weakSelf message:TipMessageTypeSpeakingOther withNickName:nil withLineNum:0 withText:nil];
         }else{
-            int code = [strongSelf->_maxKit applyTalk:1];
-            if (code == 0) {
-                strongSelf.tipLabel.messageItem = [weakSelf message:TipMessageTypePrepareSpeaking withNickName:@"我" withLineNum:0 withText:nil];
-                [[RMMusicPlayer sharedInstance] playUp];
-                
-            } else {
-                strongSelf.tipLabel.messageItem = [weakSelf message:TipMessageTypeSpeakingError withNickName:nil withLineNum:0 withText:nil];
+            if (strongSelf->_isSpeakButtonOk) {
+                int code = [strongSelf->_maxKit applyTalk:1];
+                if (code == 0) {
+                    strongSelf.tipLabel.messageItem = [weakSelf message:TipMessageTypePrepareSpeaking withNickName:@"我" withLineNum:0 withText:nil];
+                    [[RMMusicPlayer sharedInstance] playUp];
+                    
+                } else {
+                    strongSelf.tipLabel.messageItem = [weakSelf message:TipMessageTypeSpeakingError withNickName:nil withLineNum:0 withText:nil];
+                }
+            }else{
+                strongSelf.tipLabel.messageItem = [weakSelf message:TipMessageTypeSpeakingServerError withNickName:nil withLineNum:0 withText:nil];
             }
+            
         }
     };
     
@@ -272,6 +287,13 @@
 - (MessageItem *)message:(TipMessageType)type withNickName:(NSString*)nickName withLineNum:(NSInteger)lineNum withText:(NSString *)currentText{
     NSString *tipStr;
     switch (type) {
+        case TipMessageTypeSpeakingServerError:
+            tipStr = @"对讲服务异常,请稍后重试";
+            break;
+        case TipMessageTypeSpeakingTimeOutError:
+        case TipMessageTypeSpeakingTimeOut:
+            tipStr = @"超时或异常了";
+            break;
         case TipMessageTypePrepareSpeaking:
             tipStr = @"准备中...";
             break;
@@ -319,6 +341,71 @@
 }
 #pragma mark - ARMaxKitDelegate 对讲调度相关回调
 
+#pragma mark - 进出语音通道是否成功
+- (void)onRTCJoinMaxGroupOk:(NSString*)groupId {
+    self.isSpeakButtonOk = YES;
+}
+- (void)onRTCJoinMaxGroupFailed:(NSString*)groupId code:(ARMaxCode)code reason:(NSString*)reason {
+    self.isSpeakButtonOk = NO;
+}
+- (void)onRTCTempLeaveMaxGroup:(ARMaxCode)code {
+    self.isSpeakButtonOk = NO;
+}
+- (void)onRTCLeaveMaxGroup:(ARMaxCode)code {
+    self.isSpeakButtonOk = NO;
+}
+#pragma mark - 对讲相关回调
+- (void)onRTCApplyTalkOk {
+    //申请对讲成功
+     _isOtherSpeaking = NO;
+     self.tipLabel.messageItem = [self message:TipMessageTypeSpeaking withNickName:@"我" withLineNum:0 withText:nil];
+     [[RMMusicPlayer sharedInstance] playScuess];
+}
+- (void)onRTCApplyTalkClosed:(ARMaxCode)code userId:(NSString*)userId userData:(NSString*)userData {
+    if (code == 802 ) {
+        //抢麦没权限
+        self.tipLabel.messageItem = [self message:TipMessageTypeSpeakingOther withNickName:nil withLineNum:0 withText:nil];
+        if (_audioButtonView) {
+            [_audioButtonView reset];
+        }
+        
+    }else if(code == 813 || code == 814 || code == 815 || code == 816) {
+        self.tipLabel.messageItem = [self message:TipMessageTypeSpeakingTimeOutError withNickName:nil withLineNum:0 withText:nil];
+        if (_audioButtonView) {
+            [_audioButtonView reset];
+        }
+    }else if (code == 810) {
+        // 麦被抢了
+        [[RMMusicPlayer sharedInstance] playOver];
+        [_maxKit cancleTalk];
+        [_audioButtonView reset];
+        
+        self.tipLabel.messageItem =[self message:TipMessageTypeSpeakingInterrupt withNickName:userId withLineNum:self.tipLabel.number withText:nil];
+        
+    }
+}
+
+- (void)onRTCTalkOn:(NSString*)userId userData:(NSString*)userData {
+    //其他人正在对讲组中讲话
+    _isOtherSpeaking = YES;
+    //别人上麦了
+    self.tipLabel.messageItem = [self message:TipMessageTypeSpeaking  withNickName:userId withLineNum:0 withText:nil];
+    
+}
+
+- (void)onRTCTalkClosed:(ARMaxCode)code userId:(NSString*)userId userData:(NSString*)userData {
+    //对讲结束
+   // NSLog(@"onRtcTalkClosed:%d",nCode);
+   //当前讲话人下线
+   if (!_isOtherSpeaking && ![userId isEqualToString:self.userId]) {
+       [RMCommons showCenterWithText:[NSString stringWithFormat:@"当前对话被%@打断",userId]];
+   }
+   _isOtherSpeaking = NO;
+   [_audioButtonView reset];
+   
+   self.tipLabel.messageItem = [self message:TipMessageTypeSpeakingEnd withNickName:userId withLineNum:self.tipLabel.number withText:nil];
+}
+
 #pragma mark - 进出组是否成功
 - (void)onRTCJoinTalkGroupOK:(NSString *)strGroupId {
     //加入对讲组成功/切换对讲组成功
@@ -329,53 +416,7 @@
 - (void)onRTCLeaveTalkGroup:(ARMaxCode)code {
     
 }
-#pragma mark - 对讲相关回调
-- (void)onRTCApplyTalkOk {
-    //申请对讲成功
-     _isOtherSpeaking = NO;
-     self.tipLabel.messageItem = [self message:TipMessageTypeSpeaking withNickName:@"我" withLineNum:0 withText:nil];
-     [[RMMusicPlayer sharedInstance] playScuess];
-}
 
-- (void)onRTCTalkOn:(NSString*)userId userData:(NSString*)userData {
-    //其他人正在对讲组中讲话
-   
-    
-    _isOtherSpeaking = YES;
-    //别人上麦了
-    self.tipLabel.messageItem = [self message:TipMessageTypeSpeaking  withNickName:userId withLineNum:0 withText:nil];
-    
-}
-- (void)onRTCTalkClosed:(ARMaxCode)code userId:(NSString*)userId userData:(NSString*)userData {
-    //对讲结束
-   // NSLog(@"onRtcTalkClosed:%d",nCode);
-    if (code == 802) {
-        //抢麦没权限
-        self.tipLabel.messageItem = [self message:TipMessageTypeSpeakingOther withNickName:nil withLineNum:0 withText:nil];
-        if (_audioButtonView) {
-            [_audioButtonView reset];
-        }
-        
-    } else if (code == 810) {
-        // 麦被抢了
-        [[RMMusicPlayer sharedInstance] playOver];
-        [_maxKit cancleTalk];
-        [_audioButtonView reset];
-        
-        self.tipLabel.messageItem =[self message:TipMessageTypeSpeakingInterrupt withNickName:userId withLineNum:self.tipLabel.number withText:nil];
-        
-    } else {
-        //当前讲话人下线
-        if (!_isOtherSpeaking && ![userId isEqualToString:self.userId]) {
-            [RMCommons showCenterWithText:[NSString stringWithFormat:@"当前对话被%@打断",userId]];
-        }
-        _isOtherSpeaking = NO;
-        [_audioButtonView reset];
-        
-        self.tipLabel.messageItem = [self message:TipMessageTypeSpeakingEnd withNickName:userId withLineNum:self.tipLabel.number withText:nil];
-        
-    }
-}
 - (void)onRTCAudioActive:(NSString*)strRTCPeerId userId:(NSString*)strUserId audioLevel:(int)nLevel showTime:(int)nTime {
   //  NSLog(@"onRTCAudioActive:%d withPeerID:%@",nLevel,strRTCPeerId);
     //音频检测

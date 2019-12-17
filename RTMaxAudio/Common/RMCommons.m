@@ -259,4 +259,13 @@
     
 }
 
++ (BOOL)isIPhoneX {
+    // 根据安全区域判断
+    if (@available(iOS 11.0, *)) {
+        CGFloat height = [[UIApplication sharedApplication] delegate].window.safeAreaInsets.bottom;
+        return (height > 0);
+    } else {
+        return NO;
+    }
+}
 @end
