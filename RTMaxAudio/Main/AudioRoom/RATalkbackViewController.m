@@ -17,7 +17,7 @@
 #import "RMInterruptView.h"
 #import "RMAlertView.h"
 #import "UIAlertController+Blocks.h"
-
+#import "RMNetManager.h"
 
 @interface RATalkbackViewController ()<ARMaxKitDelegate>
 {
@@ -404,6 +404,13 @@
    [_audioButtonView reset];
    
    self.tipLabel.messageItem = [self message:TipMessageTypeSpeakingEnd withNickName:userId withLineNum:self.tipLabel.number withText:nil];
+}
+// 服务向前端确认网络情况，2G为垃圾网络
+- (BOOL)onRTCCheckNetSignalIsBad {
+    if ([RMNetManager shard].netType == RMNetType2G || [RMNetManager shard].netType == RMNetTypeNoNet) {
+        return YES;
+    }
+    return NO;
 }
 
 #pragma mark - 进出组是否成功

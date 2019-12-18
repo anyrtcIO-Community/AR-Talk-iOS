@@ -26,9 +26,6 @@ typedef NS_ENUM(NSInteger,RMNetType) {
 
 + (instancetype)shard;
 
-//网络监控
-- (void)start;
-
 - (void)stop;
 
 @end

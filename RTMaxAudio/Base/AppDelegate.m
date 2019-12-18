@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "IQKeyboardManager.h"
+#import "RMNetManager.h"
 
 @interface AppDelegate ()
 
@@ -33,7 +34,7 @@
     //设置显示的颜色
     bar.barTintColor = [RMCommons getColor:@"#22C485"];
     
-
+    [RMNetManager shard];
     
     return YES;
 }

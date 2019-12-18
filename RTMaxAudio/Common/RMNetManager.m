@@ -33,13 +33,44 @@ static RMNetManager *manager = NULL;
     self = [super init];
     if (self) {
         _hostReachability = [Reachability reachabilityWithHostName:@"www.baidu.com"];
-        __weak typeof(RMNetManager)*weakSelf = self;
-        _hostReachability.reachableBlock = ^(Reachability *reachability) {
-            
-        };
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(netChange) name:kReachabilityChangedNotification object:nil];
+        [_hostReachability startNotifier];
+        
     }
     return self;
 }
+
+- (void)netChange{
+    NetworkStatus status = [_hostReachability currentReachabilityStatus];
+    if (status == NotReachable) {
+        self.netType = RMNetTypeNoNet;
+        return;
+    }
+    if (status == ReachableViaWiFi) {
+         self.netType = RMNetTypeWiFi;
+        return;
+    }
+    CTTelephonyNetworkInfo *info = [CTTelephonyNetworkInfo new];
+    RMNetType networkType = RMNetType4G;
+    if ([info respondsToSelector:@selector(currentRadioAccessTechnology)]) {
+        NSString *currentStatus = info.currentRadioAccessTechnology;
+        NSArray *network2G = @[CTRadioAccessTechnologyGPRS, CTRadioAccessTechnologyEdge, CTRadioAccessTechnologyCDMA1x];
+        NSArray *network3G = @[CTRadioAccessTechnologyWCDMA, CTRadioAccessTechnologyHSDPA, CTRadioAccessTechnologyHSUPA, CTRadioAccessTechnologyCDMAEVDORev0, CTRadioAccessTechnologyCDMAEVDORevA, CTRadioAccessTechnologyCDMAEVDORevB, CTRadioAccessTechnologyeHRPD];
+        NSArray *network4G = @[CTRadioAccessTechnologyLTE];
+        
+        if ([network2G containsObject:currentStatus]) {
+            networkType = RMNetType2G;
+        }else if ([network3G containsObject:currentStatus]) {
+            networkType = RMNetType3G;
+        }else if ([network4G containsObject:currentStatus]){
+            networkType = RMNetType4G;
+        }else {
+            networkType = RMNetType4G;
+        }
+    }
+    self.netType = networkType;
+}
+
 
 //网络监控
 - (void)start {
