@@ -19,23 +19,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    
     //配置开发者
     [ARMaxEngine initEngine:appID token:token];
-    //配置私有云
-//    [ARMaxEngine configServerForPriCloud:@"" port:];
     
-    
-    //点击隐藏
+    //键盘
     [IQKeyboardManager sharedManager].shouldResignOnTouchOutside = YES;
     [IQKeyboardManager sharedManager].enableAutoToolbar = NO;
     
     UINavigationBar *bar = [UINavigationBar appearance];
-    //设置显示的颜色
     bar.barTintColor = [RMCommons getColor:@"#22C485"];
-    
     [RMNetManager shard];
-    
     return YES;
 }
 

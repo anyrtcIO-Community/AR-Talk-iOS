@@ -147,6 +147,17 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6374624D2408ECDC00805E18 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				782FE01F21ACDABB00A8FD77 /* UIAlertController+Blocks.h */,
+				782FE01E21ACDABB00A8FD77 /* UIAlertController+Blocks.m */,
+				7805DCF021806E1C00E7A9CF /* NSDictionary+STSafeObject.h */,
+				7805DCF121806E1C00E7A9CF /* NSDictionary+STSafeObject.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		6537136E20C91CBD001D1AEE = {
 			isa = PBXGroup;
 			children = (
@@ -227,17 +238,14 @@
 		6537139620C92138001D1AEE /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				78D13CFB23A7829900B59903 /* Reachability */,
-				782FE01F21ACDABB00A8FD77 /* UIAlertController+Blocks.h */,
-				782FE01E21ACDABB00A8FD77 /* UIAlertController+Blocks.m */,
-				7805DCF021806E1C00E7A9CF /* NSDictionary+STSafeObject.h */,
-				7805DCF121806E1C00E7A9CF /* NSDictionary+STSafeObject.m */,
 				6537139720C9215A001D1AEE /* RMCommons.h */,
 				6537139820C9215A001D1AEE /* RMCommons.m */,
 				653713B220C94075001D1AEE /* RMMusicPlayer.h */,
 				653713B320C94075001D1AEE /* RMMusicPlayer.m */,
 				78D13CF823A7816D00B59903 /* RMNetManager.h */,
 				78D13CF923A7816D00B59903 /* RMNetManager.m */,
+				6374624D2408ECDC00805E18 /* Category */,
+				78D13CFB23A7829900B59903 /* Reachability */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -631,10 +639,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 5543CP4MRT;
+				DEVELOPMENT_TEAM = 3YB54BC6QT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -650,7 +658,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dync.RTMaxAudio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = dync_dis;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -661,10 +669,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_ASSET_PATHS = "";
-				DEVELOPMENT_TEAM = 5543CP4MRT;
+				DEVELOPMENT_TEAM = 3YB54BC6QT;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -680,7 +688,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.dync.RTMaxAudio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = dync_dis;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
